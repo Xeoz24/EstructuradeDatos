@@ -27,7 +27,7 @@ public class MergeSort {
             temp[i] = arr[i];
         }
         int i = izquierda;
-        int j = centro = 1;
+        int j = centro + 1;
         int k = izquierda;
 
         while (i <= centro && j <= derecha) {
