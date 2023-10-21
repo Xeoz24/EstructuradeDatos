@@ -2,10 +2,9 @@ import java.util.Arrays;
 
 public class QuickSort {
 
-    public static int[]  quickSort (int [] arr){
-        
-        
-        return quickSort(arr, 0, (arr.length-1));
+    public static int[] quickSort(int[] arr) {
+
+        return quickSort(arr, 0, (arr.length - 1));
     }
 
     private static int[] quickSort(int[] arr, int primero, int ultimo) {
@@ -39,5 +38,5 @@ public class QuickSort {
         }
         return arr;
     }
-// Se obtuvo el resultado del ordenamiento iteración por íteración;
+    // Se obtuvo el resultado del ordenamiento iteración por íteración;
 }

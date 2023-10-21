@@ -22,16 +22,17 @@ public class RadixSort {
     }
 
     public static void ordeningSort(int arr[], int length, int exponente) {
-        int[] salida = new int[length + 1];
+        int[] salida = new int[length+1];
         int[] orden = new int[10];
 
         for (int i = 0; i < length; i++) {
             orden[(arr[i] / exponente) % 10]++;
         }
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i < 10; i++) {
             orden[i] += orden[i - 1];
         }
+
         for (int i = length - 1; i >= 0; i--) {
             salida[orden[(arr[i] / exponente) % 10] - 1] = arr[i];
             orden[(arr[i] / exponente) % 10]--;
@@ -40,6 +41,5 @@ public class RadixSort {
         for (int i = 0; i < length; i++) {
             arr[i] = salida[i];
         }
-
     }
 }
