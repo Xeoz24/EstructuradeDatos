@@ -14,7 +14,7 @@ public class MergeSort {
     private static void mergeSort(int[] arr, int[] temp, int izquierda, int derecha) {
         if (izquierda < derecha) {
             int centro = (izquierda + derecha) / 2;
-            mergeSort(arr, temp, izquierda, centro);    
+            mergeSort(arr, temp, izquierda, centro);
             mergeSort(arr, temp, centro + 1, derecha);
             merge(arr, temp, izquierda, centro, derecha);
             System.out.println("-" + Arrays.toString(temp));
