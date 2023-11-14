@@ -12,11 +12,18 @@ public class NodoArbol<T> {
     siguienteHermano = null;
   }
 
-  /*
-   * Al crear un nodo, este puede tener hijos, por lo tanto se debe agregar los
-   * hijos con este metodo, llamando al nodo que le quiere poner los hijos
-   * nodoPadre.agregarHijo(TipodeDato: NodoArbol hijo)
+  /**
+   * Agrega un nuevo nodo como hijo del nodo actual en un árbol.
+   * Si el nodo actual no tiene ningún hijo, el nuevo nodo se asigna como el
+   * primer hijo.
+   * Si ya tiene un hijo, se agrega el nuevo nodo como un hermano del hijo
+   * existente.
+   * En el caso de un árbol binario, |se permite un solo hijo por nodo.
+   * Si el árbol no es binario, se permiten múltiples hijos por nodo.
+   *
+   * @param hijo El nodo que se agregará como hijo del nodo actual.
    */
+
   public void agregarHijo(NodoArbol<T> hijo) {
     if (primerHijo == null) {
       primerHijo = hijo;

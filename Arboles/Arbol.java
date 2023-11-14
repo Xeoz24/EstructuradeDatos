@@ -51,7 +51,7 @@ public class Arbol<T> {
   public void imprimirArbol(Recorrido recorrido) {
     switch (recorrido.ordinal()) {
       case 0:
-        System.out.println("Prefijo: ");
+        System.out.println("\nPrefijo:");
         raiz.imprimirEnPrefijo();
         break;
 
@@ -112,6 +112,12 @@ public class Arbol<T> {
 
   }
 
+  /**
+   * Método para imprimir el árbol desde el nodo dado
+   * El nivel aparacerá por defecto en 0 porque se generará como un subárbol
+   * 
+   * @param nodo El nodo donde se va a empezar a imprimir
+   */
   public void imprimirSubArbol(NodoArbol<T> nodo) {
     if (nodo != null) {
       System.out.println("Subárbol a partir del nodo con dato: " + nodo.getDato());
@@ -121,6 +127,12 @@ public class Arbol<T> {
     }
   }
 
+  /**
+   * Método para imprimir el árbol desde el nodo dado
+   *
+   * @param nodo  El nodo donde se va a empezar a imprimir
+   * @param nivel El nivel donde se encuentra el árbol y sus subárboles
+   */
   private void imprimirSubArbolRecursivo(NodoArbol<T> nodo, int nivel) {
     if (nodo != null) {
       System.out.println("Nivel " + nivel + ": " + nodo.getDato());
@@ -132,4 +144,5 @@ public class Arbol<T> {
       }
     }
   }
+
 }
