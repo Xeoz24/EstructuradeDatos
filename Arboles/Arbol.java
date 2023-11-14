@@ -1,35 +1,53 @@
 package Arboles;
 
-public class Arbol <T> {
-  private NodoArbol <T> raiz;
+public class Arbol<T> {
+  private NodoArbol<T> raiz;
   private boolean esBinario = false;
-//Al crear un arbol se genera la raiz del arbol y el tipo de dato que agregaremos
-  public Arbol (T dato, boolean esBinario) {
-    raiz = new NodoArbol <T> (dato);
+
+  /**
+   * Constructor de la clase Arbol que recibe un dato para crear la raiz del árbol
+   * 
+   * @param dato El dato que se utilizará para crear la raíz del árbol
+   */
+  public Arbol(T dato, boolean esBinario) {
+    raiz = new NodoArbol<T>(dato);
     raiz.setEsBinario(esBinario);
     this.esBinario = esBinario;
   }
 
-  public NodoArbol <T> obtenerRaiz() {
+  /**
+   * Obtiene la raíz del árbol
+   *
+   * @return La raíz del árbol
+   */
+  public NodoArbol<T> obtenerRaiz() {
     return raiz;
   }
 
   public boolean esBinario() {
     return esBinario;
   }
-/*
-En esta parte el parametro "nodoRaiz" es donde se va insertar, esto quiere decir que se agregará en el nodo que le pongas,
-  es como el padre y el nodoAgregado es su hijo */ 
-  public void agregarNodoArbol(NodoArbol <T> nodoRaiz, NodoArbol <T> nodoAgregado) {
+
+  /**
+   * Agrega un nuevo nodo al árbol.
+   *
+   * @param nodoRaiz     El nodo al que se le agregará el nuevo nodo.
+   * @param nodoAgregado El nodo que se agregará como hijo.
+   */
+  public void agregarNodoArbol(NodoArbol<T> nodoRaiz, NodoArbol<T> nodoAgregado) {
     if (esBinario) {
       nodoAgregado.setEsBinario(esBinario);
     }
 
     nodoRaiz.agregarHijo(nodoAgregado);
   }
-/*recurre a enum, para poder hacer una busqueda
- del tipo de recorrido que se puso en el parametro "recorrido" que sirve para leer e imprimir el arbol dependiendo de
- Prefijo, Infijo, Posfijo, */
+
+  /*
+   * recurre a enum, para poder hacer una busqueda
+   * del tipo de recorrido que se puso en el parametro "recorrido" que sirve para
+   * leer e imprimir el arbol dependiendo de
+   * Prefijo, Infijo, Posfijo,
+   */
   public void imprimirArbol(Recorrido recorrido) {
     switch (recorrido.ordinal()) {
       case 0:
@@ -46,9 +64,72 @@ En esta parte el parametro "nodoRaiz" es donde se va insertar, esto quiere decir
         System.out.println("\nPosfijo: ");
         raiz.imprimirEnPosfijo();
         break;
-    
+
       default:
         break;
+    }
+  }
+
+  /**
+   * Evalua si el árbol esta vacío
+   *
+   * @return true si el árbol se encuentra vacío
+   */
+  public boolean esVacio() {
+    return raiz == null;
+  }
+
+  /**
+   * Calcula la altura del árbol.
+   *
+   * @return La altura del árbol.
+   */
+  public int alturaArbol() {
+
+    return calcularAltura(raiz);
+
+  }
+
+  /**
+   * Método para calcular la altura del árbol desde un nodo dado
+   *
+   * @param nodo El nodo a partir del cual se calculará la altura
+   * @return La altura del árbol a partir del nodo dado
+   */
+  private int calcularAltura(NodoArbol<T> nodo) {
+    if (nodo == null) {
+      return 0;
+    } else {
+      NodoArbol<T> hijo = nodo.obtenerPrimerHijo();
+      int alturaMaxima = 0;
+      while (hijo != null) {
+        int alturaHijo = calcularAltura(hijo);
+        alturaMaxima = Math.max(alturaMaxima, alturaHijo);
+        hijo = hijo.obtenerSiguienteHermano();
+      }
+      return alturaMaxima + 1;
+    }
+
+  }
+
+  public void imprimirSubArbol(NodoArbol<T> nodo) {
+    if (nodo != null) {
+      System.out.println("Subárbol a partir del nodo con dato: " + nodo.getDato());
+      imprimirSubArbolRecursivo(nodo, 0);
+    } else {
+      System.out.println("El nodo proporcionado es nulo. No se puede imprimir el subárbol");
+    }
+  }
+
+  private void imprimirSubArbolRecursivo(NodoArbol<T> nodo, int nivel) {
+    if (nodo != null) {
+      System.out.println("Nivel " + nivel + ": " + nodo.getDato());
+
+      NodoArbol<T> hijo = nodo.obtenerPrimerHijo();
+      while (hijo != null) {
+        imprimirSubArbolRecursivo(hijo, nivel + 1);
+        hijo = hijo.obtenerSiguienteHermano();
+      }
     }
   }
 }
