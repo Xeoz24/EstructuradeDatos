@@ -7,17 +7,17 @@ public class Main {
         char[] nodos = new char[17];
         char raiz = 'A';
 
-        Arbol arbolGeneral = new Arbol<Object>(raiz, false);
+        Arbol<Character> arbolGeneral = new Arbol<>(raiz, false);
 
         for (int i = 0; i < 16; i++) {
             nodos[i] = (char) ('B' + i);
             System.out.println(i + "\t" + nodos[i]);
         }
 
-        NodoArbol[] nodosArbol = new NodoArbol[17];
+        NodoArbol<Character>[] nodosArbol = new NodoArbol[17];
 
         for (int i = 0; i < 17; i++) {
-            nodosArbol[i] = new NodoArbol<Object>(nodos[i]);
+            nodosArbol[i] = new NodoArbol<Character>(nodos[i]);
         }
         /*
          * Orden del arreglo de caracteres
@@ -64,20 +64,38 @@ public class Main {
         arbolGeneral.imprimirArbol(Recorrido.PREFIJO);
         arbolGeneral.imprimirArbol(Recorrido.POSFIJO);
         System.out.println("\n" + "Este es la altura del arbol: " + arbolGeneral.alturaArbol());
+        // El recorrido empieza desde D
         arbolGeneral.imprimirSubArbol(nodosArbol[2]);
 
+        System.out.println();
         System.out.println("Arbol binario");
-        Arbol arbolBinario = new Arbol<Object>(raiz, true);
-        arbolBinario.agregarNodoArbol(arbolGeneral.obtenerRaiz(), nodosArbol[0]);
-        arbolBinario.agregarNodoArbol(nodosArbol[0], nodosArbol[3]);
-        arbolBinario.agregarNodoArbol(nodosArbol[3], nodosArbol[4]);
-        arbolBinario.agregarNodoArbol(nodosArbol[4], nodosArbol[8]);
-        arbolBinario.agregarNodoArbol(nodosArbol[8], nodosArbol[9]);
-        arbolBinario.agregarNodoArbol(nodosArbol[9], nodosArbol[10]);
-        arbolBinario.agregarNodoArbol(nodosArbol[0], nodosArbol[1]);
-        arbolBinario.agregarNodoArbol(nodosArbol[1], nodosArbol[2]);
-        arbolBinario.agregarNodoArbol(nodosArbol[2], nodosArbol[5]);
-        arbolBinario.agregarNodoArbol(nodosArbol[5], nodosArbol[1]);
+        char raizBinario = 'A';
+        Arbol<Character> arbolBinario = new Arbol<>(raizBinario, true);
+        NodoArbol<Character>[] nodosArbolBinario = new NodoArbol[17];
+
+        for (int i = 0; i < 17; i++) {
+            nodosArbolBinario[i] = new NodoArbol<Character>(nodos[i]);
+        }
+
+        arbolBinario.agregarNodoArbol(arbolBinario.obtenerRaiz(), nodosArbol[0]);
+        arbolBinario.agregarNodoArbol(nodosArbolBinario[0], nodosArbolBinario[3]);
+        arbolBinario.agregarNodoArbol(nodosArbolBinario[3], nodosArbolBinario[4]);
+        arbolBinario.agregarNodoArbol(nodosArbolBinario[4], nodosArbolBinario[8]);
+        arbolBinario.agregarNodoArbol(nodosArbolBinario[8], nodosArbolBinario[9]);
+        arbolBinario.agregarNodoArbol(nodosArbolBinario[9], nodosArbolBinario[10]);
+        arbolBinario.agregarNodoArbol(nodosArbolBinario[0], nodosArbolBinario[1]);
+        arbolBinario.agregarNodoArbol(nodosArbolBinario[1], nodosArbolBinario[2]);
+        arbolBinario.agregarNodoArbol(nodosArbolBinario[2], nodosArbolBinario[5]);
+        arbolBinario.agregarNodoArbol(nodosArbolBinario[5], nodosArbolBinario[11]);
+        arbolBinario.agregarNodoArbol(nodosArbolBinario[11], nodosArbolBinario[14]);
+        arbolBinario.agregarNodoArbol(nodosArbolBinario[14], nodosArbolBinario[15]);
+        arbolBinario.agregarNodoArbol(nodosArbolBinario[5], nodosArbolBinario[6]);
+        arbolBinario.imprimirArbol(Recorrido.INFIJO);
+        arbolBinario.imprimirArbol(Recorrido.PREFIJO);
+        arbolBinario.imprimirArbol(Recorrido.POSFIJO);
+        System.out.println("\n" + "La altura del arbol binario es: " + arbolBinario.alturaArbol());
+        // El recorrido empieza desde D
+        arbolBinario.imprimirSubArbol(nodosArbol[2]);
 
     }
 
