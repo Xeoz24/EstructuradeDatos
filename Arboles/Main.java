@@ -11,7 +11,6 @@ public class Main {
 
         for (int i = 0; i < 16; i++) {
             nodos[i] = (char) ('B' + i);
-            System.out.println(i + "\t" + nodos[i]);
         }
 
         NodoArbol<Character>[] nodosArbol = new NodoArbol[17];
@@ -38,6 +37,7 @@ public class Main {
          * 14 P
          * 15 Q
          */
+        System.out.println("--------------Arbol General--------------");
         arbolGeneral.agregarNodoArbol(arbolGeneral.obtenerRaiz(), nodosArbol[0]);
         arbolGeneral.agregarNodoArbol(nodosArbol[0], nodosArbol[3]);
         arbolGeneral.agregarNodoArbol(nodosArbol[0], nodosArbol[4]);
@@ -59,7 +59,7 @@ public class Main {
         arbolGeneral.agregarNodoArbol(nodosArbol[2], nodosArbol[7]);
         arbolGeneral.agregarNodoArbol(nodosArbol[7], nodosArbol[12]);
         arbolGeneral.agregarNodoArbol(nodosArbol[7], nodosArbol[13]);
-
+        System.out.println("¿Está vacío el árbol? " + arbolGeneral.esVacio());
         arbolGeneral.imprimirArbol(Recorrido.INFIJO);
         arbolGeneral.imprimirArbol(Recorrido.PREFIJO);
         arbolGeneral.imprimirArbol(Recorrido.POSFIJO);
@@ -68,7 +68,7 @@ public class Main {
         arbolGeneral.imprimirSubArbol(nodosArbol[2]);
 
         System.out.println();
-        System.out.println("Arbol binario");
+        System.out.println("--------------Arbol binario--------------");
         char raizBinario = 'A';
         Arbol<Character> arbolBinario = new Arbol<>(raizBinario, true);
         NodoArbol<Character>[] nodosArbolBinario = new NodoArbol[17];
@@ -77,12 +77,13 @@ public class Main {
             nodosArbolBinario[i] = new NodoArbol<Character>(nodos[i]);
         }
 
-        arbolBinario.agregarNodoArbol(arbolBinario.obtenerRaiz(), nodosArbol[0]);
+        arbolBinario.agregarNodoArbol(arbolBinario.obtenerRaiz(), nodosArbolBinario[0]);
         arbolBinario.agregarNodoArbol(nodosArbolBinario[0], nodosArbolBinario[3]);
         arbolBinario.agregarNodoArbol(nodosArbolBinario[3], nodosArbolBinario[4]);
         arbolBinario.agregarNodoArbol(nodosArbolBinario[4], nodosArbolBinario[8]);
         arbolBinario.agregarNodoArbol(nodosArbolBinario[8], nodosArbolBinario[9]);
         arbolBinario.agregarNodoArbol(nodosArbolBinario[9], nodosArbolBinario[10]);
+
         arbolBinario.agregarNodoArbol(nodosArbolBinario[0], nodosArbolBinario[1]);
         arbolBinario.agregarNodoArbol(nodosArbolBinario[1], nodosArbolBinario[2]);
         arbolBinario.agregarNodoArbol(nodosArbolBinario[2], nodosArbolBinario[5]);
@@ -90,6 +91,10 @@ public class Main {
         arbolBinario.agregarNodoArbol(nodosArbolBinario[11], nodosArbolBinario[14]);
         arbolBinario.agregarNodoArbol(nodosArbolBinario[14], nodosArbolBinario[15]);
         arbolBinario.agregarNodoArbol(nodosArbolBinario[5], nodosArbolBinario[6]);
+        arbolBinario.agregarNodoArbol(nodosArbolBinario[6], nodosArbolBinario[7]);
+        arbolBinario.agregarNodoArbol(nodosArbolBinario[7], nodosArbolBinario[12]);
+        arbolBinario.agregarNodoArbol(nodosArbolBinario[12], nodosArbolBinario[13]);
+        System.out.println("¿Está vacío el árbol? " + arbolBinario.esVacio());
         arbolBinario.imprimirArbol(Recorrido.INFIJO);
         arbolBinario.imprimirArbol(Recorrido.PREFIJO);
         arbolBinario.imprimirArbol(Recorrido.POSFIJO);
